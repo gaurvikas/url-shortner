@@ -1,3 +1,132 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+    margin: 0;
+    background: #f7f7f7;
+    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+nav,
+header,
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+nav {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+nav a:first-child {
+    font-weight: 700;
+    margin-right: auto;
+}
+
+header {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+
+main {
+    background: #fff;
+    min-height: 70vh;
+}
+
+section {
+    margin-top: 24px;
+}
+
+h1,
+h2 {
+    margin: 0 0 12px;
+    color: #111;
+}
+
+a {
+    color: #075985;
+}
+
+form {
+    margin: 12px 0;
+}
+
+input,
+select {
+    box-sizing: border-box;
+    width: min(100%, 520px);
+    padding: 8px 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 14px;
+    border: 1px solid #075985;
+    border-radius: 4px;
+    background: #075985;
+    color: #fff;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #fff;
+}
+
+th,
+td {
+    padding: 9px 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background: #f1f5f9;
+}
+
+ul {
+    padding: 10px 16px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+@media (max-width: 700px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+.guest-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #f7f7f7;
+}
+
+.guest-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.guest-card main {
+    min-height: 0;
+}
