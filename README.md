@@ -1,6 +1,6 @@
 # Sembark URL Shortener Assignment
 
-A Laravel 12 URL shortener with company-based access control, invitations, role-based dashboards, and public short URL redirects.
+A Laravel URL shortener with company-based access control, invitations, role-based dashboards, and public short URL redirects.
 
 ## Features
 
@@ -12,7 +12,14 @@ A Laravel 12 URL shortener with company-based access control, invitations, role-
 - Member can create and view only their own short URLs.
 - SuperAdmin cannot create short URLs.
 - Public short URLs redirect to the original URL and increment visit counts.
-- Feature tests cover the assignment requirements.
+- Feature tests.
+
+## Requirements
+
+- PHP 8.2 or higher
+- Composer 2.x
+- MySQL 8.0 or higher
+- Laravel v12
 
 ## Local Setup
 
@@ -23,13 +30,7 @@ A Laravel 12 URL shortener with company-based access control, invitations, role-
 composer install
 ```
 
-3. Install frontend dependencies:
-
-```bash
-npm install
-```
-
-4. Copy the environment file:
+3. Copy the environment file:
 
 ```bash
 cp .env.example .env
@@ -41,31 +42,30 @@ On Windows PowerShell:
 Copy-Item .env.example .env
 ```
 
-5. Generate the app key:
+4. Generate the app key:
 
 ```bash
 php artisan key:generate
 ```
 
-6. Create the SQLite database file if it does not exist:
+5. Create a new MySQL database and update your `.env` file with the correct database credentials.
 
-```bash
-php -r "file_exists('database/database.sqlite') || touch('database/database.sqlite');"
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_name
+DB_USERNAME=root
+DB_PASSWORD=
 ```
 
-7. Run migrations and seed the SuperAdmin account:
+6. Run the migrations and seed the database:
 
 ```bash
 php artisan migrate --seed
 ```
 
-8. Build frontend assets:
-
-```bash
-npm run build
-```
-
-9. Start the app:
+7. Start the app:
 
 ```bash
 php artisan serve
@@ -73,14 +73,11 @@ php artisan serve
 
 Then open `http://127.0.0.1:8000`.
 
-
 ## SuperAdmin Login
 
 - Email: `superadmin@sembark.test`
 - Password: `password`
 
-
-The SuperAdmin account is created by `DatabaseSeeder` using raw SQL insert statements.
 
 ## Testing
 
@@ -96,7 +93,7 @@ Current verification: `36 passed (114 assertions)`.
 
 1. Login as SuperAdmin.
 2. Invite a new company Admin from the dashboard.
-3. Copy the generated invitation link and open it in a guest browser/session.
+3. Copy the generated invitation link and open it in a browser.
 4. Accept the invitation by setting a password.
 5. Login as the company Admin and invite Members or other Admins.
 6. Admins and Members can generate short URLs from the dashboard.

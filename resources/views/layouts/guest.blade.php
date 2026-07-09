@@ -7,7 +7,7 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        @vite(['resources/css/app.css'])
+        <link rel="stylesheet" href="{{ asset('app.css') }}">
     </head>
     <body>
         <main class="guest-page">
