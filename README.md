@@ -73,10 +73,12 @@ php artisan serve
 
 Then open `http://127.0.0.1:8000`.
 
+
 ## SuperAdmin Login
 
 - Email: `superadmin@sembark.test`
 - Password: `password`
+
 
 The SuperAdmin account is created by `DatabaseSeeder` using raw SQL insert statements.
 
@@ -97,7 +99,11 @@ Current verification: `36 passed (114 assertions)`.
 3. Copy the generated invitation link and open it in a guest browser/session.
 4. Accept the invitation by setting a password.
 5. Login as the company Admin and invite Members or other Admins.
+<<<<<<< HEAD
 6. Admins and Members can generate short URLs from the dashboard.
 7. Public users can open `/{shortCode}` URLs without logging in.
 
 
+=======
+6. Admins and Members can generate short URLs from the dashboard.
+>>>>>>> 6c1818c (add instruction to README.md to setup the project for testing)
