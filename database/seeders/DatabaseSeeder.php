@@ -10,17 +10,14 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::insert(
-            'insert into users (name, email, email_verified_at, password, role, created_at, updated_at) values (?, ?, ?, ?, ?, ?, ?)',
-            [
-                'Super Admin',
-                'superadmin@sembark.test',
-                now(),
-                Hash::make('password'),
-                'super_admin',
-                now(),
-                now(),
-            ]
-        );
+    DB::table('users')->insert([
+        'name' => 'Super Admin',
+        'email' => 'superadmin@sembark.test',
+        'email_verified_at' => now(),
+        'password' => Hash::make('password'),
+        'role' => 'super_admin',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
     }
 }
