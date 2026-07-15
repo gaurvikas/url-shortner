@@ -1,10 +1,10 @@
 <x-app-layout>
-    <x-slot name="header">
+
         <h1>Dashboard</h1>
         @if(auth()->user()->isSuperAdmin() || auth()->user()->isAdmin())
             <p><a href="{{ route('invitations.create') }}">Invite User</a></p>
         @endif
-    </x-slot>
+        <hr>
 
     @if(session('status'))
         <p>{{ session('status') }}</p>
@@ -43,7 +43,7 @@
     @if(auth()->user()->isSuperAdmin())
         <section>
             <h2>Companies</h2>
-            <table border="1" cellpadding="8" cellspacing="0">
+            <table border="1">
                 <thead>
                     <tr>
                         <th>Company</th>
@@ -61,7 +61,7 @@
                             <td>{{ $company->short_urls_sum_visits ?? 0 }}</td>
                         </tr>
                     @empty
-                        <tr><td colspan="4">No companies yet.</td></tr>
+                        <tr><td>No companies yet.</td></tr>
                     @endforelse
                 </tbody>
             </table>
@@ -70,7 +70,7 @@
 
     <section>
         <h2>Generated Short URLs</h2>
-        <table border="1" cellpadding="8" cellspacing="0">
+        <table border="1">
             <thead>
                 <tr>
                     <th>Short URL</th>
@@ -104,7 +104,7 @@
     @if(auth()->user()->isAdmin())
         <section>
             <h2>Team Members</h2>
-            <table border="1" cellpadding="8" cellspacing="0">
+            <table border="1">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -117,9 +117,9 @@
                 <tbody>
                     @foreach($teamMembers as $member)
                         <tr>
-                            <td>{{ $member->name }}</td>
+                            <td>{{ ucfirst($member->name) }}</td>
                             <td>{{ $member->email }}</td>
-                            <td>{{ ucfirst(str_replace('_', ' ', $member->role)) }}</td>
+                            <td>{{ ucfirst($member->role) }}</td>
                             <td>{{ $member->short_urls_count }}</td>
                             <td>{{ $member->short_urls_sum_visits ?? 0 }}</td>
                         </tr>

@@ -10,12 +10,6 @@
 <body>
     @include('layouts.navigation')
 
-    @isset($header)
-        <header>
-            {{ $header }}
-        </header>
-    @endisset
-
     <main>
         {{ $slot }}
     </main>

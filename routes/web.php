@@ -9,14 +9,9 @@ use App\Http\Controllers\ShortUrlController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    if(auth()->check()){
-        return redirect()->route('dashboard');
-    }else{
-        return redirect()->route('login');
-    }
+    if(auth()->check()){return redirect()->route('dashboard');}
+    else{return redirect()->route('login');}
 });
-
-Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
@@ -28,12 +23,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/invitations/accept/{token}', [InvitationController::class, 'showAccept'])->name('invitations.accept.show');
 Route::post('/invitations/accept/{token}', [InvitationController::class, 'accept'])->name('invitations.accept');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 require __DIR__.'/auth.php';
-
 Route::get('/{shortCode}', RedirectShortUrlController::class)->where('shortCode', '[A-Za-z0-9]{7}')->name('short-urls.redirect');

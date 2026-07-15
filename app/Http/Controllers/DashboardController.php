@@ -18,20 +18,11 @@ class DashboardController extends Controller
         $teamMembers = [];
 
         if ($user->isSuperAdmin()) {
-            $companies = Company::query()
-                ->withCount('users')
-                ->withSum('shortUrls', 'visits')
-                ->withCount('shortUrls')
-                ->latest()
-                ->get();
+            $companies = Company::query()->withCount('users')->withSum('shortUrls', 'visits')->withCount('shortUrls')->latest()->get();
+
         } elseif ($user->isAdmin()) {
             $shortUrls->where('company_id', $user->company_id);
-            $teamMembers = User::query()
-                ->where('company_id', $user->company_id)
-                ->withCount('shortUrls')
-                ->withSum('shortUrls', 'visits')
-                ->orderBy('name')
-                ->get();
+            $teamMembers = User::query()->where('company_id', $user->company_id)->withCount('shortUrls')->withSum('shortUrls', 'visits')->orderBy('name')->get();
         } else {
             $shortUrls->where('user_id', $user->id);
         }

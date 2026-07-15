@@ -42,9 +42,7 @@ class InvitationController extends Controller
 
         $validated = $request->validate($rules);
 
-        $company = $user->isSuperAdmin()
-            ? Company::create(['name' => $validated['company_name']])
-            : $user->company;
+        $company = $user->isSuperAdmin() ? Company::create(['name' => $validated['company_name']]) : $user->company;
 
         abort_if($company === null, 403);
 
